@@ -10,6 +10,19 @@ type Props = {
 
 const OTHER_BOOKS_REQUIRED = 5;
 
+function Cover({ url, title }: { url: string | null; title: string }) {
+  if (!url) return null;
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={url}
+      alt={`${title} 표지`}
+      loading="lazy"
+      className="h-[88px] w-16 shrink-0 rounded border border-slate-200 bg-slate-100 object-contain"
+    />
+  );
+}
+
 export default function VotingForm({ designatedBooks, otherBooks }: Props) {
   const [memberName, setMemberName] = useState('');
   const [existingNames, setExistingNames] = useState<string[]>([]);
@@ -117,6 +130,7 @@ export default function VotingForm({ designatedBooks, otherBooks }: Props) {
                     setResult(null);
                   }}
                 />
+                <Cover url={book.cover_url} title={book.title} />
                 <span>
                   <span className="block font-medium">{book.title}</span>
                   <span className="block text-xs text-slate-500">
@@ -157,6 +171,7 @@ export default function VotingForm({ designatedBooks, otherBooks }: Props) {
                     disabled={disabled}
                     onChange={() => toggleOtherBook(book.id)}
                   />
+                  <Cover url={book.cover_url} title={book.title} />
                   <span>
                     <span className="block font-medium">{book.title}</span>
                     <span className="block text-xs text-slate-500">

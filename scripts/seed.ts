@@ -57,13 +57,27 @@ async function main() {
         other_book_id INTEGER NOT NULL REFERENCES other_books(id),
         PRIMARY KEY (response_id, other_book_id)
       );
+
+      ALTER TABLE designated_books ADD COLUMN IF NOT EXISTS cover_url TEXT;
+      ALTER TABLE other_books ADD COLUMN IF NOT EXISTS cover_url TEXT;
     `);
+
+    // public/covers/d01.jpg.. / o01.jpg.. 는 sort_order 순서(1부터)에 대응한다. 이미 있는 값은 건드리지 않는다.
+    const backfillCovers = async () => {
+      await client.query(
+        `UPDATE designated_books SET cover_url = '/covers/d' || lpad((sort_order + 1)::text, 2, '0') || '.jpg' WHERE cover_url IS NULL`
+      );
+      await client.query(
+        `UPDATE other_books SET cover_url = '/covers/o' || lpad((sort_order + 1)::text, 2, '0') || '.jpg' WHERE cover_url IS NULL`
+      );
+    };
+    await backfillCovers();
 
     const { rows: designatedCountRows } = await client.query('SELECT COUNT(*)::int AS count FROM designated_books');
     const { rows: otherCountRows } = await client.query('SELECT COUNT(*)::int AS count FROM other_books');
 
     if (designatedCountRows[0].count > 0 || otherCountRows[0].count > 0) {
-      console.log('이미 도서 데이터가 있어 시드를 건너뜁니다. (다시 넣으려면 테이블을 비우고 실행하세요)');
+      console.log('이미 도서 데이터가 있어 시드를 건너뜁니다. (표지 경로만 채웠습니다)');
       return;
     }
 
@@ -87,6 +101,7 @@ async function main() {
       ]);
     }
 
+    await backfillCovers();
     console.log('시드 완료.');
 
     const flagged = [...seed.designated, ...seed.other].filter((b) => b.note);

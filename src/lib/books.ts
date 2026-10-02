@@ -5,18 +5,21 @@ export type Book = {
   title: string;
   author: string | null;
   publisher: string | null;
+  cover_url: string | null;
 };
 
 export type DesignatedBook = Book & { date_label: string | null };
 
 export async function getDesignatedBooks(): Promise<DesignatedBook[]> {
   const { rows } = await getPool().query(
-    'SELECT id, title, author, publisher, date_label FROM designated_books ORDER BY sort_order'
+    'SELECT id, title, author, publisher, date_label, cover_url FROM designated_books ORDER BY sort_order'
   );
   return rows;
 }
 
 export async function getOtherBooks(): Promise<Book[]> {
-  const { rows } = await getPool().query('SELECT id, title, author, publisher FROM other_books ORDER BY sort_order');
+  const { rows } = await getPool().query(
+    'SELECT id, title, author, publisher, cover_url FROM other_books ORDER BY sort_order'
+  );
   return rows;
 }

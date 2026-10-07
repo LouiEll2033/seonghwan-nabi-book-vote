@@ -1,21 +1,20 @@
 {
-  "_readme": "designated = 양재나비 지정도서 풀 (회원이 1권 선택). other = 나머지 후보도서 풀 (회원이 5권 선택). note가 있는 항목은 사진 OCR로 확신이 낮아 원본 사진과 대조 후 title/author/publisher를 고쳐야 합니다. seed 스크립트는 이 파일에서 note 필드를 무시하고 DB에는 넣지 않습니다.",
+  "_readme": "designated = 양재나비 하반기 지정도서 풀 (회원이 1권 선택, '자유도서' 날짜와 9/26 추석 인사 이미지는 제외). other = 나머지 후보도서 풀 (회원이 5권 선택). 제목/저자/출판사는 업로드된 사진과 온라인 서점 정보로 대조했다. note가 있는 항목은 확인이 필요한 항목이며, seed 스크립트는 note를 DB에 넣지 않는다.",
 
   "designated": [
-    { "date_label": "7/4", "title": "축적과 발산", "author": "신승철", "publisher": "웅진지식하우스" },
-    { "date_label": "7/18", "title": "인생에 필요한 최소한의 생각의 힘", "author": "신영준, 고영성", "publisher": "상상스퀘어", "note": "사진 글자가 작아 제목 확신도 낮음 - 원본 대조 필요" },
+    { "date_label": "7/4", "title": "축적과 발산", "author": "신수정", "publisher": "웅진지식하우스" },
+    { "date_label": "7/18", "title": "인생을 위한 최소한의 생각", "author": "신영준, 고영성", "publisher": "상상스퀘어" },
     { "date_label": "8/1", "title": "이토록 뜻밖의 뇌과학", "author": "리사 펠드먼 배럿", "publisher": "더퀘스트" },
-    { "date_label": "8/15", "title": "감사의 재발견", "author": "로버트 에먼스", "publisher": "현대지성" },
-    { "date_label": "8/29", "title": "숫자 감각의 힘", "author": "사이토 고타츠", "publisher": "클럽북스", "note": "출판사명 확신도 낮음 - 원본 대조 필요" },
+    { "date_label": "8/15", "title": "감사의 재발견", "author": "제러미 애덤 스미스 외", "publisher": "현대지성" },
+    { "date_label": "8/29", "title": "숫자 감각의 힘", "author": "사이토 고타츠", "publisher": "클랩북스" },
     { "date_label": "9/12", "title": "하루 15분 호르몬 혁명", "author": "안철우", "publisher": "한스미디어" },
-    { "date_label": "9/26", "title": "짱뚱아 한가위 보세요", "author": "", "publisher": "", "note": "제목/저자/출판사 전부 확신도 낮음 (그림책류로 추정) - 원본 대조 필요" },
     { "date_label": "10/3", "title": "싯다르타", "author": "헤르만 헤세", "publisher": "민음사", "note": "나머지도서 풀에도 동일 제목이 있음 - 중복 의도된 것인지 확인 필요" },
-    { "date_label": "10/17", "title": "워런 버핏 웨이", "author": "로버트 해그스트롬", "publisher": "상상스퀘어", "note": "출판사명 확신도 낮음 - 원본 대조 필요" },
-    { "date_label": "10/31", "title": "플러스 휴먼", "author": "김미경", "publisher": "awake" },
+    { "date_label": "10/17", "title": "워런 버핏 웨이", "author": "로버트 해그스트롬", "publisher": "상상스퀘어" },
+    { "date_label": "10/31", "title": "김미경의 플러스 휴먼", "author": "김미경", "publisher": "어웨이크" },
     { "date_label": "11/14", "title": "나는 4시간만 일한다", "author": "팀 페리스", "publisher": "다른상상" },
-    { "date_label": "11/28", "title": "최소한의 경제 공부", "author": "", "publisher": "하이스트", "note": "저자명 확신도 낮음 - 원본 대조 필요" },
-    { "date_label": "12/12", "title": "천천히, 다정하게", "author": "박웅현", "publisher": "인티엔", "note": "저자명 확신도 낮음 - 원본 대조 필요" },
-    { "date_label": "12/26", "title": "새벽이 오기 전이 가장 어둡다", "author": "박소영", "publisher": "" }
+    { "date_label": "11/28", "title": "최소한의 경제 공부", "author": "백억남(김욱현)", "publisher": "하이스트" },
+    { "date_label": "12/12", "title": "천천히, 다정하게", "author": "박웅현", "publisher": "인티앤" },
+    { "date_label": "12/26", "title": "새벽이 오기 전에 가장 어둡다", "author": "박소영", "publisher": "유노책주" }
   ],
 
   "other": [
@@ -42,6 +41,32 @@
     { "title": "어른의 행복은 조용하다", "author": "태수", "publisher": "페이지2북스" },
     { "title": "소년이 온다", "author": "한강", "publisher": "창비" },
     { "title": "이처럼 사소한 것들", "author": "클레어 키건", "publisher": "다산책방" },
-    { "title": "첫 여름, 완주", "author": "김금희", "publisher": "무제(MUZE)" }
+    { "title": "첫 여름, 완주", "author": "김금희", "publisher": "무제(MUZE)" },
+    { "title": "삶의 모든 색", "author": "리사 아이사토", "publisher": "길벗어린이" },
+    { "title": "도둑맞은 집중력", "author": "요한 하리", "publisher": "어크로스" },
+    { "title": "쇼펜하우어 인생수업: 한 번뿐인 삶 이렇게 살아라", "author": "쇼펜하우어", "publisher": "하이스트" },
+    { "title": "다정한 것이 살아남는다", "author": "브라이언 헤어 외", "publisher": "디플롯" },
+    { "title": "흰", "author": "한강", "publisher": "문학동네" },
+    { "title": "이반 일리치의 죽음", "author": "레프 톨스토이", "publisher": "민음사" },
+    { "title": "행복한 철학자", "author": "우애령", "publisher": "하늘재" },
+    { "title": "맡겨진 소녀", "author": "클레어 키건", "publisher": "다산책방" },
+    { "title": "멋진 신세계", "author": "올더스 헉슬리", "publisher": "소담출판사" },
+    { "title": "총 균 쇠", "author": "재레드 다이아몬드", "publisher": "김영사" },
+    { "title": "면도날", "author": "서머싯 몸", "publisher": "민음사" },
+    { "title": "그릿", "author": "김주환", "publisher": "인플루엔셜" },
+    { "title": "제철 행복", "author": "김신지", "publisher": "인플루엔셜" },
+    { "title": "홍학의 자리", "author": "정해연", "publisher": "엘릭시르" },
+    { "title": "자유론", "author": "존 스튜어트 밀", "publisher": "현대지성" },
+    { "title": "안녕이라 그랬어", "author": "김애란", "publisher": "문학동네" },
+    { "title": "작별하지 않는다", "author": "한강", "publisher": "문학동네" },
+    { "title": "서랍에 저녁을 넣어 두었다", "author": "한강", "publisher": "문학과지성사" },
+    { "title": "물고기는 존재하지 않는다", "author": "룰루 밀러", "publisher": "곰출판" },
+    { "title": "데미안", "author": "헤르만 헤세", "publisher": "민음사" },
+    { "title": "이중 하나는 거짓말", "author": "김애란", "publisher": "문학동네" },
+    { "title": "제16회 젊은작가상 수상작품집(2025)", "author": "백온유 외", "publisher": "문학동네" },
+    { "title": "사람, 장소, 환대", "author": "김현경", "publisher": "문학과지성사" },
+    { "title": "대온실 수리 보고서", "author": "김금희", "publisher": "창비" },
+    { "title": "사피엔스", "author": "유발 하라리", "publisher": "김영사" },
+    { "title": "코스모스", "author": "칼 세이건", "publisher": "사이언스북스" }
   ]
 }

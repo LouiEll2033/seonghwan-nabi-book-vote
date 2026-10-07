@@ -62,6 +62,16 @@ async function main() {
       ALTER TABLE other_books ADD COLUMN IF NOT EXISTS cover_url TEXT;
     `);
 
+    // 도서 목록을 통째로 다시 넣을 때만 사용한다. 이미 제출된 응답이 있으면 지워지지 않도록 막는다.
+    if (process.argv.includes('--reset')) {
+      const { rows } = await client.query('SELECT COUNT(*)::int AS count FROM responses');
+      if (rows[0].count > 0) {
+        throw new Error(`제출된 응답이 ${rows[0].count}건 있어 --reset을 실행할 수 없습니다.`);
+      }
+      await client.query('TRUNCATE response_other_books, responses, designated_books, other_books RESTART IDENTITY CASCADE');
+      console.log('도서 테이블을 비웠습니다 (응답 0건 확인).');
+    }
+
     // public/covers/d01.jpg.. / o01.jpg.. 는 sort_order 순서(1부터)에 대응한다. 이미 있는 값은 건드리지 않는다.
     const backfillCovers = async () => {
       await client.query(
@@ -106,7 +116,7 @@ async function main() {
 
     const flagged = [...seed.designated, ...seed.other].filter((b) => b.note);
     if (flagged.length > 0) {
-      console.log('\n⚠️  아래 항목은 사진 OCR 확신도가 낮아 원본과 대조가 필요합니다:');
+      console.log('\n⚠️  아래 항목은 확인이 필요합니다:');
       for (const b of flagged) {
         console.log(`  - ${b.title}: ${b.note}`);
       }

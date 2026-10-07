@@ -23,9 +23,9 @@ export default async function HomePage() {
       <header className="mb-6 space-y-2">
         <h1 className="text-xl font-bold">성환나비 내년 추천도서 투표</h1>
         <p className="text-sm leading-relaxed text-slate-600">
-          <strong>지정도서 1권</strong>과 <strong>나머지도서 5권</strong>, 총 6권을 골라 추천해주세요.
+          두 단계로 총 6권을 추천해주세요. <strong>① 기본 선택</strong>: 지정도서 1권, <strong>② 추가 선택</strong>: 나머지 도서 5권.
           <br />
-          마감: {VOTING_DEADLINE_LABEL}까지 (이미 제출했다면 같은 이름으로 다시 제출 시 이전 선택을 덮어씁니다)
+          마감: {VOTING_DEADLINE_LABEL}까지
         </p>
       </header>
       <VotingForm designatedBooks={designatedBooks} otherBooks={otherBooks} />

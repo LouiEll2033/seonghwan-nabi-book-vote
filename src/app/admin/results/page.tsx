@@ -1,4 +1,4 @@
-import { getAllResponses, getDesignatedCounts, getOtherCounts } from '@/lib/results';
+import { formatKst, getAllResponses, getDesignatedCounts, getOtherCounts } from '@/lib/results';
 
 export const dynamic = 'force-dynamic';
 
@@ -68,7 +68,7 @@ export default async function AdminResultsPage() {
                   <td className="py-1 pr-2">{r.designated_title}</td>
                   <td className="py-1 pr-2">{r.other_titles.join(', ')}</td>
                   <td className="py-1 pr-2 whitespace-nowrap text-xs text-slate-500">
-                    {new Date(r.updated_at).toLocaleString('ko-KR')}
+                    {formatKst(r.updated_at)}
                   </td>
                 </tr>
               ))}

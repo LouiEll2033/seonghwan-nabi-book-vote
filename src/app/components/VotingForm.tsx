@@ -18,7 +18,7 @@ function Cover({ url, title }: { url: string | null; title: string }) {
       src={url}
       alt={`${title} 표지`}
       loading="lazy"
-      className="h-[88px] w-16 shrink-0 rounded border border-slate-200 bg-slate-100 object-contain"
+      className="h-28 w-20 shrink-0 rounded border border-slate-200 bg-slate-100 object-contain"
     />
   );
 }

@@ -1,4 +1,5 @@
 import { getPool } from '@/lib/db';
+import { toCsv } from '@/lib/csv';
 
 export type BookCount = { id: number; title: string; date_label: string | null; votes: number };
 export type ResponseRow = {
@@ -7,6 +8,39 @@ export type ResponseRow = {
   other_titles: string[];
   updated_at: string;
 };
+
+// Vercel 서버 시간대는 UTC라서, 화면/CSV에 찍는 시각은 항상 한국 시간으로 변환한다.
+export function formatKst(value: string | Date): string {
+  return new Date(value).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', hour12: false });
+}
+
+export function responsesToCsv(responses: ResponseRow[], withBom = true): string {
+  return toCsv(
+    ['이름', '지정도서', '나머지도서1', '나머지도서2', '나머지도서3', '나머지도서4', '나머지도서5', '제출/수정 시각'],
+    responses.map((r) => [
+      r.member_name,
+      r.designated_title,
+      r.other_titles[0] ?? '',
+      r.other_titles[1] ?? '',
+      r.other_titles[2] ?? '',
+      r.other_titles[3] ?? '',
+      r.other_titles[4] ?? '',
+      formatKst(r.updated_at),
+    ]),
+    withBom
+  );
+}
+
+export function countsToCsv(designated: BookCount[], other: BookCount[], withBom = true): string {
+  return toCsv(
+    ['구분', '도서', '득표'],
+    [
+      ...designated.map((b) => ['지정도서', b.title, String(b.votes)]),
+      ...other.map((b) => ['나머지도서', b.title, String(b.votes)]),
+    ],
+    withBom
+  );
+}
 
 export async function getDesignatedCounts(): Promise<BookCount[]> {
   const { rows } = await getPool().query(`
